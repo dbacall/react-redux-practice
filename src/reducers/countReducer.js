@@ -10,7 +10,12 @@ export default function(state = initialState, action) {
         ...state,
         count: state.count
       };
-
+    case SUBTRACT:
+      state.count--;
+      return {
+        ...state,
+        count: state.count
+      };
     default:
       return state;
   }

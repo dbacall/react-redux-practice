@@ -1,13 +1,15 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import { subtractFromCount } from "../actions/countActions";
 
-const Subtract = ({ onSubtract }) => (
-  <button
-    onClick={() => {
-      onSubtract();
-    }}
-  >
-    -
-  </button>
-);
+class Subtract extends Component {
+  handleSubtract = () => {
+    this.props.subtractFromCount();
+  };
 
-export default Subtract;
+  render() {
+    return <button onClick={this.handleSubtract}>-</button>;
+  }
+}
+
+export default connect(null, { subtractFromCount })(Subtract);
