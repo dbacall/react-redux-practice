@@ -1,28 +1,13 @@
 import React, { Component } from "react";
 import Add from "./add";
 import Subtract from "./subtract";
+import { connect } from "react-redux";
 
 class Counter extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { count: 0 };
-  }
-
-  handleAdd = () => {
-    this.state.count++;
-    this.setState({ count: this.state.count++ });
-    console.log(this.state.count);
-  };
-
-  handleSubtract = () => {
-    this.state.count--;
-    this.setState({ count: this.state.count-- });
-  };
-
   render() {
     return (
       <React.Fragment>
-        <h1>{this.state.count}</h1>
+        <h1>{this.props.count}</h1>
         <Subtract onSubtract={this.handleSubtract} />
         <Add onAdd={this.handleAdd} />
       </React.Fragment>
@@ -30,4 +15,8 @@ class Counter extends Component {
   }
 }
 
-export default Counter;
+const mapStateToProps = state => ({
+  count: state.count.count
+});
+
+export default connect(mapStateToProps)(Counter);

@@ -1,13 +1,15 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import { addToCount } from "../actions/countActions";
 
-const Add = ({ onAdd }) => (
-  <button
-    onClick={() => {
-      onAdd();
-    }}
-  >
-    +
-  </button>
-);
+class Add extends Component {
+  handleAdd = () => {
+    this.props.addToCount();
+  };
 
-export default Add;
+  render() {
+    return <button onClick={this.handleAdd}>+</button>;
+  }
+}
+
+export default connect(null, { addToCount })(Add);
